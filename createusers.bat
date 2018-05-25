@@ -9,7 +9,7 @@ Set /p _domainroot="enter the root domain, e.g. com, net:  "
 
 
 ::create the new users OU
-DSADD OU ou=newusers,dc=michaels,dc=lab
+DSADD OU ou=newusers,dc=%_domain%,dc=%_domainroot%
 
 ::Take the user name from users.txt and compile into the csv file for importing.
 for /f "tokens=1,2 delims= " %%G in (c:\temp\users.txt) do echo "CN=%%G %%H,OU=newusers,DC=%_domain%,DC=%_domainroot%",user,%%G%%H,%%H,%%G,%%G.%%H@%_domain%.%_domainroot% >> c:\temp\users.csv
